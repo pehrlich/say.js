@@ -66,6 +66,8 @@ exports.speak = function(voice, text, callback, options) {
       // noop
     }
   });
+
+  return childD;
 };
 
 /*
