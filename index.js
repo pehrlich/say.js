@@ -13,9 +13,11 @@ else if (process.platform === 'linux') {
 }
 
 // say stuff, speak
-exports.speak = function(voice, text, callback) {
+exports.speak = function(voice, text, callback, options) {
   var commands,
     pipedData;
+
+  options || (options = {});
 
   if (arguments.length < 2) {
     console.log('invalid amount of arguments sent to speak()');
@@ -31,6 +33,10 @@ exports.speak = function(voice, text, callback) {
   } else if (process.platform === 'linux') {
     commands = ['--pipe'];
     pipedData = '(' + voice + ') (SayText \"' + text + '\")';
+  }
+
+  if (options.rate){
+    commands.push('-r', options.rate);
   }
 
 
